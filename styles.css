@@ -31,8 +31,16 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 14% 8%, rgba(22, 184, 115, 0.14), transparent 28%),
-    radial-gradient(circle at 86% 14%, rgba(10, 90, 126, 0.14), transparent 30%),
+    radial-gradient(
+      circle at 14% 8%,
+      rgba(22, 184, 115, 0.14),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 86% 14%,
+      rgba(10, 90, 126, 0.14),
+      transparent 30%
+    ),
     var(--paper);
   color: var(--ink);
   font-family: "Manrope", Arial, sans-serif;
@@ -76,7 +84,11 @@ a {
   color: var(--white);
   box-shadow: 0 18px 60px rgba(3, 24, 35, 0.12);
   backdrop-filter: blur(22px) saturate(1.35);
-  transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease, border-color 220ms ease;
+  transition:
+    background 220ms ease,
+    box-shadow 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease;
 }
 
 .site-header.is-scrolled,
@@ -178,7 +190,9 @@ a {
   pointer-events: none;
   transform: translate(-50%, 10px) scale(0.98);
   backdrop-filter: blur(22px) saturate(1.35);
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
 }
 
 .submenu::before {
@@ -218,7 +232,11 @@ a {
   min-height: 46px;
   border-radius: 999px;
   font-weight: 750;
-  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, border-color 220ms ease;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease;
 }
 
 .header-call {
@@ -289,8 +307,17 @@ a {
 
 .hero-shade {
   background:
-    radial-gradient(circle at 24% 70%, rgba(22, 184, 115, 0.16), transparent 27%),
-    linear-gradient(90deg, rgba(5, 24, 36, 0.88) 0%, rgba(6, 30, 43, 0.62) 48%, rgba(6, 30, 43, 0.2) 100%),
+    radial-gradient(
+      circle at 24% 70%,
+      rgba(22, 184, 115, 0.16),
+      transparent 27%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(5, 24, 36, 0.88) 0%,
+      rgba(6, 30, 43, 0.62) 48%,
+      rgba(6, 30, 43, 0.2) 100%
+    ),
     linear-gradient(0deg, rgba(6, 30, 43, 0.56), transparent 46%);
 }
 
@@ -390,7 +417,11 @@ h1 span {
   min-height: 128px;
   padding: 26px;
   border-right: 1px solid var(--line);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.12));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.48),
+    rgba(255, 255, 255, 0.12)
+  );
 }
 
 .proof-item:last-child {
@@ -472,7 +503,10 @@ h1 span {
 
 .feature {
   padding: 28px;
-  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease;
 }
 
 .feature:hover,
@@ -489,7 +523,11 @@ h1 span {
   height: 42px;
   padding: 10px;
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(22, 184, 115, 0.16), rgba(10, 90, 126, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(22, 184, 115, 0.16),
+    rgba(10, 90, 126, 0.1)
+  );
   color: var(--green);
 }
 
@@ -570,7 +608,11 @@ h1 span {
 .service-card::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(7, 54, 78, 0.86), rgba(7, 54, 78, 0.12));
+  background: linear-gradient(
+    0deg,
+    rgba(7, 54, 78, 0.86),
+    rgba(7, 54, 78, 0.12)
+  );
   content: "";
 }
 
@@ -606,7 +648,11 @@ h1 span {
 
 .process {
   background:
-    radial-gradient(circle at 20% 20%, rgba(22, 184, 115, 0.22), transparent 32%),
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(22, 184, 115, 0.22),
+      transparent 32%
+    ),
     linear-gradient(145deg, #062b3f, #0a415d 58%, #063047);
   color: var(--white);
 }
@@ -642,15 +688,26 @@ h1 span {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 88% 12%, rgba(22, 184, 115, 0.16), transparent 26%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(244, 248, 247, 0.96));
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(22, 184, 115, 0.16),
+      transparent 26%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.76),
+      rgba(244, 248, 247, 0.96)
+    );
 }
 
 .review {
   position: relative;
   min-width: 0;
   padding: 26px;
-  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease;
 }
 
 .review::before {
@@ -788,7 +845,11 @@ h1 span {
   inset: 54px 24px;
   z-index: -1;
   border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.18));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.62),
+    rgba(255, 255, 255, 0.18)
+  );
   box-shadow: var(--soft-shadow);
   content: "";
 }
@@ -824,8 +885,16 @@ h1 span {
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: var(--radius-xl);
   background:
-    radial-gradient(circle at 50% 50%, rgba(22, 184, 115, 0.2), transparent 18%),
-    radial-gradient(circle at 28% 22%, rgba(10, 90, 126, 0.16), transparent 22%),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(22, 184, 115, 0.2),
+      transparent 18%
+    ),
+    radial-gradient(
+      circle at 28% 22%,
+      rgba(10, 90, 126, 0.16),
+      transparent 22%
+    ),
     rgba(255, 255, 255, 0.62);
   box-shadow: var(--shadow);
   backdrop-filter: blur(24px) saturate(1.35);
@@ -858,36 +927,46 @@ h1 span {
   top: 50%;
   left: 50%;
   z-index: 2;
-  display: grid;
-  place-items: center;
-  width: 150px;
-  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 188px;
+  height: 188px;
+  padding: 22px;
   transform: translate(-50%, -50%);
   border: 1px solid rgba(255, 255, 255, 0.78);
   border-radius: 50%;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.46));
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.88),
+    rgba(255, 255, 255, 0.46)
+  );
   box-shadow: var(--shadow);
   text-align: center;
   backdrop-filter: blur(18px);
 }
 
 .map-center i {
-  width: 36px;
-  height: 36px;
-  padding: 8px;
-  border-radius: 16px;
+  width: 46px;
+  height: 46px;
+  padding: 10px;
+  border-radius: 50%;
   background: var(--green);
   color: var(--white);
+  box-shadow: 0 12px 26px rgba(22, 184, 115, 0.24);
 }
 
 .map-center strong {
   font-family: "Plus Jakarta Sans", "Manrope", sans-serif;
-  font-size: 1.22rem;
+  font-size: 1.48rem;
+  line-height: 1;
 }
 
 .map-center span {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.86rem;
   font-weight: 800;
 }
 
@@ -909,7 +988,9 @@ h1 span {
   font-size: 0.9rem;
   font-weight: 850;
   backdrop-filter: blur(16px);
-  transition: transform 220ms ease, background 220ms ease;
+  transition:
+    transform 220ms ease,
+    background 220ms ease;
 }
 
 .area-list span:hover {
@@ -919,7 +1000,11 @@ h1 span {
 
 .cta {
   background:
-    radial-gradient(circle at 80% 20%, rgba(22, 184, 115, 0.25), transparent 30%),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(22, 184, 115, 0.25),
+      transparent 30%
+    ),
     linear-gradient(135deg, var(--blue), var(--blue-deep));
   color: var(--white);
 }
@@ -936,35 +1021,75 @@ h1 span {
 }
 
 .site-footer {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 30px max(24px, calc((100vw - var(--max)) / 2));
-  background: rgba(255, 255, 255, 0.72);
+  gap: 18px;
+  padding: 18px max(18px, calc((100vw - var(--max)) / 2));
+  background: rgba(255, 255, 255, 0.78);
   border-top: 1px solid var(--line);
+  box-shadow: 0 -18px 48px rgba(10, 47, 69, 0.05);
+  backdrop-filter: blur(20px) saturate(1.25);
 }
 
-.site-footer div,
+.footer-brand,
 .site-footer nav {
   display: flex;
   align-items: center;
-  gap: 18px;
+}
+
+.footer-brand {
+  gap: 10px;
 }
 
 .site-footer img {
-  width: 54px;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
 }
 
 .site-footer p {
   margin: 0;
+  color: var(--ink);
   font-weight: 800;
+  white-space: nowrap;
 }
 
 .site-footer nav {
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 8px;
   color: var(--muted);
   font-weight: 650;
+}
+
+.site-footer nav a,
+.footer-credit {
+  border-radius: 999px;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.site-footer nav a {
+  padding: 8px 11px;
+}
+
+.site-footer nav a:hover,
+.footer-credit:hover {
+  background: rgba(10, 90, 126, 0.08);
+  color: var(--blue-deep);
+  transform: translateY(-1px);
+}
+
+.footer-credit {
+  justify-self: end;
+  padding: 8px 12px;
+  color: rgba(102, 118, 130, 0.86);
+  font-size: 0.82rem;
+  font-weight: 750;
+  white-space: nowrap;
 }
 
 .page-header {
@@ -987,77 +1112,121 @@ h1 span {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 18% 68%, rgba(22, 184, 115, 0.22), transparent 28%),
+    radial-gradient(
+      circle at 18% 68%,
+      rgba(22, 184, 115, 0.22),
+      transparent 28%
+    ),
     linear-gradient(90deg, rgba(5, 24, 36, 0.9), rgba(5, 24, 36, 0.62)),
     url("assets/optimized/hero-lcp.jpg") center / cover;
 }
 
 .contact-hero .subpage-hero-bg {
   background:
-    radial-gradient(circle at 18% 68%, rgba(22, 184, 115, 0.22), transparent 28%),
+    radial-gradient(
+      circle at 18% 68%,
+      rgba(22, 184, 115, 0.22),
+      transparent 28%
+    ),
     linear-gradient(90deg, rgba(5, 24, 36, 0.9), rgba(5, 24, 36, 0.6)),
     url("assets/work-1.jpeg") center / cover;
 }
 
 .about-hero .subpage-hero-bg {
   background:
-    radial-gradient(circle at 18% 68%, rgba(22, 184, 115, 0.22), transparent 28%),
+    radial-gradient(
+      circle at 18% 68%,
+      rgba(22, 184, 115, 0.22),
+      transparent 28%
+    ),
     linear-gradient(90deg, rgba(5, 24, 36, 0.9), rgba(5, 24, 36, 0.58)),
     url("assets/work-4.jpg") center / cover;
 }
 
 .house-clearance-hero .subpage-hero-bg {
   background:
-    radial-gradient(circle at 18% 68%, rgba(22, 184, 115, 0.22), transparent 28%),
+    radial-gradient(
+      circle at 18% 68%,
+      rgba(22, 184, 115, 0.22),
+      transparent 28%
+    ),
     linear-gradient(90deg, rgba(5, 24, 36, 0.92), rgba(5, 24, 36, 0.58)),
     url("assets/work-1.jpeg") center / cover;
 }
 
 .apartment-clearance-hero .subpage-hero-bg {
   background:
-    radial-gradient(circle at 18% 68%, rgba(22, 184, 115, 0.22), transparent 28%),
+    radial-gradient(
+      circle at 18% 68%,
+      rgba(22, 184, 115, 0.22),
+      transparent 28%
+    ),
     linear-gradient(90deg, rgba(5, 24, 36, 0.92), rgba(5, 24, 36, 0.56)),
     url("assets/work-3.jpg") center / cover;
 }
 
 .basement-clearance-hero .subpage-hero-bg {
   background:
-    radial-gradient(circle at 18% 68%, rgba(22, 184, 115, 0.2), transparent 28%),
+    radial-gradient(
+      circle at 18% 68%,
+      rgba(22, 184, 115, 0.2),
+      transparent 28%
+    ),
     linear-gradient(90deg, rgba(5, 24, 36, 0.92), rgba(5, 24, 36, 0.58)),
     url("assets/work-4.jpg") center / cover;
 }
 
 .attic-clearance-hero .subpage-hero-bg {
   background:
-    radial-gradient(circle at 18% 68%, rgba(22, 184, 115, 0.22), transparent 28%),
+    radial-gradient(
+      circle at 18% 68%,
+      rgba(22, 184, 115, 0.22),
+      transparent 28%
+    ),
     linear-gradient(90deg, rgba(5, 24, 36, 0.93), rgba(5, 24, 36, 0.58)),
     url("assets/work-2.jpeg") center / cover;
 }
 
 .garage-clearance-hero .subpage-hero-bg {
   background:
-    radial-gradient(circle at 18% 68%, rgba(22, 184, 115, 0.22), transparent 28%),
+    radial-gradient(
+      circle at 18% 68%,
+      rgba(22, 184, 115, 0.22),
+      transparent 28%
+    ),
     linear-gradient(90deg, rgba(5, 24, 36, 0.92), rgba(5, 24, 36, 0.56)),
     url("assets/work-6.jpg") center / cover;
 }
 
 .commercial-clearance-hero .subpage-hero-bg {
   background:
-    radial-gradient(circle at 18% 68%, rgba(22, 184, 115, 0.2), transparent 28%),
+    radial-gradient(
+      circle at 18% 68%,
+      rgba(22, 184, 115, 0.2),
+      transparent 28%
+    ),
     linear-gradient(90deg, rgba(5, 24, 36, 0.92), rgba(5, 24, 36, 0.58)),
     url("assets/work-5.jpeg") center / cover;
 }
 
 .legal-hero .subpage-hero-bg {
   background:
-    radial-gradient(circle at 18% 68%, rgba(22, 184, 115, 0.22), transparent 28%),
+    radial-gradient(
+      circle at 18% 68%,
+      rgba(22, 184, 115, 0.22),
+      transparent 28%
+    ),
     linear-gradient(90deg, rgba(5, 24, 36, 0.94), rgba(5, 24, 36, 0.68)),
     url("assets/work-4.jpg") center / cover;
 }
 
 .gallery-hero .subpage-hero-bg {
   background:
-    radial-gradient(circle at 18% 68%, rgba(22, 184, 115, 0.22), transparent 28%),
+    radial-gradient(
+      circle at 18% 68%,
+      rgba(22, 184, 115, 0.22),
+      transparent 28%
+    ),
     linear-gradient(90deg, rgba(5, 24, 36, 0.92), rgba(5, 24, 36, 0.55)),
     url("assets/work-3.jpg") center / cover;
 }
@@ -1123,7 +1292,11 @@ h1 span {
   height: 42px;
   padding: 10px;
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(22, 184, 115, 0.16), rgba(10, 90, 126, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(22, 184, 115, 0.16),
+    rgba(10, 90, 126, 0.1)
+  );
   color: var(--green);
 }
 
@@ -1175,7 +1348,10 @@ h1 span {
   font: inherit;
   padding: 14px 16px;
   outline: none;
-  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
 }
 
 .contact-form input:focus,
@@ -1432,13 +1608,20 @@ h1 span {
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: var(--radius-lg);
   background:
-    radial-gradient(circle at 30% 20%, rgba(22, 184, 115, 0.16), transparent 32%),
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(22, 184, 115, 0.16),
+      transparent 32%
+    ),
     rgba(255, 255, 255, 0.7);
   box-shadow: var(--soft-shadow);
   color: inherit;
   cursor: pointer;
   backdrop-filter: blur(18px) saturate(1.25);
-  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
 }
 
 .gallery-item:hover {
@@ -1556,7 +1739,9 @@ h1 span {
   color: var(--white);
   cursor: pointer;
   backdrop-filter: blur(16px) saturate(1.25);
-  transition: transform 180ms ease, background 180ms ease;
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
 }
 
 .gallery-lightbox-close:hover,
@@ -1581,7 +1766,7 @@ h1 span {
 .floating-whatsapp {
   position: fixed;
   right: 22px;
-  bottom: 22px;
+  bottom: 60px;
   z-index: 30;
   display: inline-flex;
   align-items: center;
@@ -1596,7 +1781,9 @@ h1 span {
   box-shadow: 0 18px 46px rgba(14, 165, 106, 0.34);
   font-weight: 850;
   backdrop-filter: blur(18px) saturate(1.35);
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
 }
 
 .floating-whatsapp:hover {
@@ -1612,7 +1799,9 @@ h1 span {
 .reveal {
   opacity: 1;
   transform: translate3d(0, 0, 0);
-  transition: opacity 620ms ease, transform 620ms ease;
+  transition:
+    opacity 620ms ease,
+    transform 620ms ease;
 }
 
 .js .reveal {
@@ -2042,8 +2231,20 @@ h1 span {
     overflow-x: auto;
     scrollbar-width: none;
     margin-top: 22px;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 10%,
+      #000 90%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 10%,
+      #000 90%,
+      transparent
+    );
   }
 
   .trust-row::-webkit-scrollbar {
@@ -2170,8 +2371,22 @@ h1 span {
   }
 
   .map-center {
-    width: 136px;
-    height: 136px;
+    width: 166px;
+    height: 166px;
+    padding: 18px;
+  }
+
+  .map-center i {
+    width: 42px;
+    height: 42px;
+  }
+
+  .map-center strong {
+    font-size: 1.28rem;
+  }
+
+  .map-center span {
+    font-size: 0.8rem;
   }
 
   .area-list span {
@@ -2214,11 +2429,20 @@ h1 span {
     --y: 42% !important;
   }
 
-  .site-footer,
-  .site-footer div,
-  .site-footer nav {
-    flex-direction: column;
+  .site-footer {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 20px 18px 24px;
     align-items: flex-start;
+  }
+
+  .site-footer nav {
+    justify-content: flex-start;
+  }
+
+  .footer-credit {
+    justify-self: start;
+    padding-left: 0;
   }
 }
 
@@ -2228,7 +2452,16 @@ h1 span {
   }
 
   .map-center {
-    width: 126px;
-    height: 126px;
+    width: 152px;
+    height: 152px;
+    padding: 16px;
+  }
+
+  .map-center strong {
+    font-size: 1.16rem;
+  }
+
+  .map-center span {
+    font-size: 0.76rem;
   }
 }
