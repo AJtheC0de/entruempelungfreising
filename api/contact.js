@@ -4,18 +4,99 @@ const WINDOW_MS = 10 * 60 * 1000;
 const MAX_REQUESTS = 5;
 const MIN_FORM_AGE_MS = 4500;
 const MAX_FIELD_LENGTH = 4000;
+const MAX_URLS = 3;
+const MAX_EMAILS = 3;
 const SPAM_WORDS = [
+  "seo",
+  "seo paket",
   "casino",
   "crypto",
   "viagra",
   "loan",
   "porn",
   "seo package",
+  "seo service",
+  "seo services",
+  "suchmaschinenoptimierung",
+  "search engine optimization",
   "backlink",
+  "backlinks",
+  "linkbuilding",
+  "link building",
+  "keyword ranking",
+  "google ranking",
+  "google rankings",
+  "ranking verbessern",
   "rank higher",
+  "google bewertung",
+  "google bewertungen",
+  "google review",
+  "google reviews",
+  "google rating",
+  "google ratings",
+  "5 sterne bewertung",
+  "5 star review",
+  "bewertungen kaufen",
+  "buy reviews",
+  "trustpilot",
   "telegram",
   "whatsapp marketing",
+  "webdesign",
+  "web design",
+  "webdesigner",
+  "website redesign",
+  "website design",
+  "website development",
+  "web development",
+  "neue website",
+  "new website",
+  "homepage erstellen",
+  "redesign your website",
+  "marketing agentur",
+  "marketing agency",
+  "digital marketing",
+  "online marketing",
+  "social media marketing",
+  "lead generation",
+  "leadgenerierung",
+  "generate leads",
+  "mehr kunden",
+  "more customers",
+  "increase traffic",
+  "increase leads",
+  "google ads",
+  "facebook ads",
+  "instagram ads",
+  "ppc campaign",
+  "email marketing",
+  "ai automation",
+  "ki automatisierung",
+  "ai agency",
+  "ki agentur",
+  "chatgpt",
+  "chatbot",
+  "virtual assistant",
+  "guest post",
+  "sponsored post",
+  "partnership opportunity",
+  "business proposal",
+  "quick question",
+  "i found your website",
+  "improve your website",
+  "grow your business",
+  "forex",
+  "kredit",
 ];
+const SPAM_DOMAINS = [
+  "@outlookindia.com",
+  "@yandex.com",
+  "@mail.ru",
+  "@163.com",
+  "@qq.com",
+];
+const URL_PATTERN = /\b(?:https?:\/\/|www\.)\S+/gi;
+const BLOCKED_URL_PATTERN = /\b(?:https?:\/\/|www\.)/i;
+const EMAIL_PATTERN = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi;
 
 const json = (res, status, payload) => {
   res.statusCode = status;
@@ -69,9 +150,29 @@ const parseForm = (body, contentType) => {
   return new URLSearchParams(body);
 };
 
-const hasSpam = (values) => {
+const hasSpamWord = (values) => {
   const haystack = values.join(" ").toLowerCase();
   return SPAM_WORDS.some((word) => haystack.includes(word));
+};
+
+const hasSpamDomain = (values) => {
+  const haystack = values.join(" ").toLowerCase();
+  return SPAM_DOMAINS.some((domain) => haystack.includes(domain));
+};
+
+const countMatches = (value, pattern) => {
+  const matches = value.match(pattern);
+  return matches ? matches.length : 0;
+};
+
+const hasMessageSpam = (message) => {
+  const urlCount = countMatches(message, URL_PATTERN);
+  const emailCount = countMatches(message, EMAIL_PATTERN);
+  return (
+    BLOCKED_URL_PATTERN.test(message) ||
+    urlCount > MAX_URLS ||
+    emailCount > MAX_EMAILS
+  );
 };
 
 const verifyTurnstile = async (token, ip) => {
@@ -84,10 +185,13 @@ const verifyTurnstile = async (token, ip) => {
   payload.set("response", token);
   payload.set("remoteip", ip);
 
-  const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-    method: "POST",
-    body: payload,
-  });
+  const response = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      body: payload,
+    },
+  );
   const result = await response.json();
   return Boolean(result.success);
 };
@@ -145,7 +249,12 @@ module.exports = async function handler(req, res) {
   };
 
   const values = Object.values(fields);
-  if (values.some((value) => value.length > MAX_FIELD_LENGTH) || hasSpam(values)) {
+  if (
+    values.some((value) => value.length > MAX_FIELD_LENGTH) ||
+    hasSpamWord(values) ||
+    hasSpamDomain(values) ||
+    hasMessageSpam(fields.message)
+  ) {
     return json(res, 400, { ok: false });
   }
 
@@ -153,7 +262,10 @@ module.exports = async function handler(req, res) {
     return json(res, 400, { ok: false });
   }
 
-  const turnstileOk = await verifyTurnstile(params.get("cf-turnstile-response"), ip);
+  const turnstileOk = await verifyTurnstile(
+    params.get("cf-turnstile-response"),
+    ip,
+  );
   if (!turnstileOk) {
     return json(res, 400, { ok: false });
   }
