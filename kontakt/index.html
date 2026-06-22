@@ -11,25 +11,6 @@
     <link rel="canonical" href="https://www.entruempelungfreising.de/kontakt/" />
     <link rel="icon" href="../assets/logo.png" />
     <link rel="preload" as="image" href="../assets/work-1.jpeg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
-      />
-    </noscript>
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
@@ -110,11 +91,16 @@
           </article>
         </div>
 
-        <form class="contact-form reveal" action="mailto:info@entruempelungfreising.de" method="post" enctype="text/plain">
+        <form class="contact-form reveal" action="/api/contact" method="post" data-contact-form>
           <div class="section-heading compact">
             <p class="eyebrow">Anfrage</p>
             <h2>Was soll entrümpelt werden?</h2>
           </div>
+          <input type="hidden" name="startedAt" value="" data-form-started-at />
+          <label class="form-trap" aria-hidden="true">
+            Website
+            <input type="text" name="website" tabindex="-1" autocomplete="off" />
+          </label>
           <label>
             Name
             <input type="text" name="Name" autocomplete="name" placeholder="Ihr Name" />
@@ -131,6 +117,8 @@
             Nachricht
             <textarea name="Nachricht" rows="5" placeholder="Kurz beschreiben, was geräumt werden soll"></textarea>
           </label>
+          <div class="turnstile-slot" data-turnstile-placeholder hidden></div>
+          <p class="form-status" data-form-status role="status" aria-live="polite"></p>
           <button class="btn btn-primary" type="submit">
             <i data-lucide="send"></i>
             Anfrage senden

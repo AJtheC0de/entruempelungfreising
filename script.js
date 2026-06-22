@@ -183,3 +183,67 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") setGalleryImage(galleryIndex - 1);
   if (event.key === "ArrowRight") setGalleryImage(galleryIndex + 1);
 });
+
+const contactForm = document.querySelector("[data-contact-form]");
+const contactStatus = contactForm?.querySelector("[data-form-status]");
+const contactStartedAt = contactForm?.querySelector("[data-form-started-at]");
+const minSubmitDelay = 4500;
+const submitThrottle = 30000;
+
+if (contactForm && contactStatus && contactStartedAt) {
+  const loadedAt = Date.now();
+  contactStartedAt.value = String(loadedAt);
+
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const now = Date.now();
+    const lastSubmit = Number(sessionStorage.getItem("contactFormLastSubmit") || 0);
+    const submitButton = contactForm.querySelector("button[type='submit']");
+
+    contactStatus.classList.remove("is-error", "is-success");
+
+    if (now - loadedAt < minSubmitDelay) {
+      contactStatus.textContent = "Bitte warten Sie kurz und senden Sie die Anfrage erneut.";
+      contactStatus.classList.add("is-error");
+      return;
+    }
+
+    if (now - lastSubmit < submitThrottle) {
+      contactStatus.textContent = "Bitte warten Sie einen Moment, bevor Sie erneut senden.";
+      contactStatus.classList.add("is-error");
+      return;
+    }
+
+    submitButton?.setAttribute("disabled", "disabled");
+    contactStatus.textContent = "Anfrage wird gesendet...";
+
+    try {
+      const payload = new URLSearchParams(new FormData(contactForm));
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: payload,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Submit failed");
+      }
+
+      sessionStorage.setItem("contactFormLastSubmit", String(now));
+      contactForm.reset();
+      contactStartedAt.value = String(Date.now());
+      contactStatus.textContent = "Danke, Ihre Anfrage wurde gesendet.";
+      contactStatus.classList.add("is-success");
+    } catch {
+      contactStatus.textContent =
+        "Das Formular konnte nicht gesendet werden. Bitte rufen Sie uns direkt an oder nutzen Sie WhatsApp.";
+      contactStatus.classList.add("is-error");
+    } finally {
+      submitButton?.removeAttribute("disabled");
+    }
+  });
+}

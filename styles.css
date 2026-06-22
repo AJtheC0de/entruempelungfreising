@@ -1338,6 +1338,14 @@ h1 span {
   gap: 8px;
 }
 
+.contact-form .form-trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -1359,6 +1367,25 @@ h1 span {
   border-color: rgba(22, 184, 115, 0.62);
   box-shadow: 0 0 0 4px rgba(22, 184, 115, 0.12);
   background: var(--white);
+}
+
+.form-status {
+  min-height: 1.4em;
+  margin: 0;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.form-status.is-error {
+  color: #a33131;
+}
+
+.form-status.is-success {
+  color: var(--green);
+}
+
+.turnstile-slot:not([hidden]) {
+  min-height: 65px;
 }
 
 .about-copy {
