@@ -1621,15 +1621,14 @@ h1 span {
 
 .gallery-grid {
   display: grid;
-  grid-auto-flow: dense;
-  grid-auto-rows: 150px;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
 }
 
 .gallery-item {
   position: relative;
   overflow: hidden;
+  aspect-ratio: 4 / 3;
   min-height: 0;
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.72);
@@ -1684,11 +1683,11 @@ h1 span {
 }
 
 .gallery-item.is-wide {
-  grid-column: span 2;
+  grid-column: auto;
 }
 
 .gallery-item.is-tall {
-  grid-row: span 2;
+  grid-row: auto;
 }
 
 .gallery-placeholder {
@@ -1988,7 +1987,6 @@ h1 span {
   }
 
   .gallery-grid {
-    grid-auto-rows: 140px;
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -2182,16 +2180,11 @@ h1 span {
   }
 
   .gallery-grid {
-    grid-auto-rows: 118px;
     gap: 12px;
   }
 
-  .gallery-item.is-wide {
-    grid-column: span 2;
-  }
-
-  .gallery-item.is-tall {
-    grid-row: span 2;
+  .gallery-item {
+    aspect-ratio: 1;
   }
 
   .gallery-placeholder {
