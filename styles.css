@@ -452,8 +452,7 @@ h1 span {
 .process,
 .reviews,
 .gallery-band,
-.cta,
-.subpage-section {
+.cta {
   content-visibility: auto;
   contain-intrinsic-size: 1px 760px;
 }
