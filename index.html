@@ -496,6 +496,46 @@
       <span>WhatsApp</span>
     </a>
 
+    <dialog class="contact-popup" data-contact-popup aria-labelledby="contact-popup-title">
+      <form class="contact-form" action="/api/contact" method="post" data-contact-form>
+        <button class="contact-popup-close" type="button" data-contact-popup-close aria-label="Fenster schließen">
+          <i data-lucide="x"></i>
+        </button>
+        <div class="section-heading compact">
+          <p class="eyebrow">Kostenlose Anfrage</p>
+          <h2 id="contact-popup-title">Was soll entrümpelt werden?</h2>
+        </div>
+        <input type="hidden" name="startedAt" value="" data-form-started-at />
+        <label class="form-trap" aria-hidden="true">
+          Website
+          <input type="text" name="website" tabindex="-1" autocomplete="off" />
+        </label>
+        <div class="contact-popup-fields">
+          <label>
+            Name
+            <input type="text" name="Name" autocomplete="name" placeholder="Ihr Name" />
+          </label>
+          <label>
+            Telefon oder E-Mail
+            <input type="text" name="Kontakt" autocomplete="tel" placeholder="Wie erreichen wir Sie?" required />
+          </label>
+        </div>
+        <label>
+          Objekt / Ort
+          <input type="text" name="Ort" placeholder="z. B. Keller in Freising" />
+        </label>
+        <label>
+          Nachricht
+          <textarea name="Nachricht" rows="4" placeholder="Kurz beschreiben, was geräumt werden soll" required></textarea>
+        </label>
+        <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+        <button class="btn btn-primary" type="submit">
+          <i data-lucide="send"></i>
+          Anfrage senden
+        </button>
+      </form>
+    </dialog>
+
     <script src="assets/vendor/icons.js" defer></script>
     <script src="script.js" defer></script>
   </body>

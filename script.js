@@ -187,8 +187,40 @@ document.addEventListener("keydown", (event) => {
 const contactForm = document.querySelector("[data-contact-form]");
 const contactStatus = contactForm?.querySelector("[data-form-status]");
 const contactStartedAt = contactForm?.querySelector("[data-form-started-at]");
+const contactPopup = document.querySelector("[data-contact-popup]");
+const contactPopupClose = contactPopup?.querySelector("[data-contact-popup-close]");
 const minSubmitDelay = 4500;
 const submitThrottle = 30000;
+
+if (contactPopup) {
+  const popupSessionKey = "contactPopupShown";
+  let popupWasShown = false;
+
+  try {
+    popupWasShown = sessionStorage.getItem(popupSessionKey) === "true";
+    if (!popupWasShown) sessionStorage.setItem(popupSessionKey, "true");
+  } catch {
+    // The popup still works when browser storage is unavailable.
+  }
+
+  if (!popupWasShown) {
+    contactPopup.showModal();
+    document.body.classList.add("has-contact-popup");
+  }
+
+  const closeContactPopup = () => {
+    contactPopup.close();
+    document.body.classList.remove("has-contact-popup");
+  };
+
+  contactPopupClose?.addEventListener("click", closeContactPopup);
+  contactPopup.addEventListener("click", (event) => {
+    if (event.target === contactPopup) closeContactPopup();
+  });
+  contactPopup.addEventListener("close", () => {
+    document.body.classList.remove("has-contact-popup");
+  });
+}
 
 if (contactForm && contactStatus && contactStartedAt) {
   const loadedAt = Date.now();
