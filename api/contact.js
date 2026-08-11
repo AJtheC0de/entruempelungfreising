@@ -176,7 +176,7 @@ const hasMessageSpam = (message) => {
 };
 
 const forwardMessage = async (fields, ip) => {
-  const target = process.env.CONTACT_WEBHOOK_URL;
+  const target = process.env.CONTACT_WEBHOOK_URL || process.env.WEBHOOK;
   if (!target) return false;
 
   const response = await fetch(target, {
