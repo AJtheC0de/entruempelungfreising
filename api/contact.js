@@ -175,32 +175,11 @@ const hasMessageSpam = (message) => {
   );
 };
 
-const verifyTurnstile = async (token, ip) => {
-  const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) return true;
-  if (!token) return false;
-
-  const payload = new URLSearchParams();
-  payload.set("secret", secret);
-  payload.set("response", token);
-  payload.set("remoteip", ip);
-
-  const response = await fetch(
-    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-    {
-      method: "POST",
-      body: payload,
-    },
-  );
-  const result = await response.json();
-  return Boolean(result.success);
-};
-
 const forwardMessage = async (fields, ip) => {
   const target = process.env.CONTACT_WEBHOOK_URL;
   if (!target) return false;
 
-  await fetch(target, {
+  const response = await fetch(target, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -210,6 +189,11 @@ const forwardMessage = async (fields, ip) => {
       fields,
     }),
   });
+
+  if (!response.ok) {
+    throw new Error(`Contact webhook responded with ${response.status}`);
+  }
+
   return true;
 };
 
@@ -262,21 +246,13 @@ module.exports = async function handler(req, res) {
     return json(res, 400, { ok: false });
   }
 
-  const turnstileOk = await verifyTurnstile(
-    params.get("cf-turnstile-response"),
-    ip,
-  );
-  if (!turnstileOk) {
-    return json(res, 400, { ok: false });
-  }
-
   try {
     const forwarded = await forwardMessage(fields, ip);
     if (!forwarded) {
-      return json(res, 503, { ok: false });
+      return json(res, 503, { ok: false, error: "service_unavailable" });
     }
   } catch {
-    return json(res, 502, { ok: false });
+    return json(res, 502, { ok: false, error: "delivery_failed" });
   }
 
   return json(res, 202, { ok: true });

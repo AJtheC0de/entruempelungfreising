@@ -230,7 +230,10 @@ if (contactForm && contactStatus && contactStartedAt) {
       });
 
       if (!response.ok) {
-        throw new Error("Submit failed");
+        const result = await response.json().catch(() => ({}));
+        const error = new Error("Submit failed");
+        error.code = result.error;
+        throw error;
       }
 
       sessionStorage.setItem("contactFormLastSubmit", String(now));
@@ -238,9 +241,10 @@ if (contactForm && contactStatus && contactStartedAt) {
       contactStartedAt.value = String(Date.now());
       contactStatus.textContent = "Danke, Ihre Anfrage wurde gesendet.";
       contactStatus.classList.add("is-success");
-    } catch {
-      contactStatus.textContent =
-        "Das Formular konnte nicht gesendet werden. Bitte rufen Sie uns direkt an oder nutzen Sie WhatsApp.";
+    } catch (error) {
+      contactStatus.textContent = error.code === "service_unavailable"
+        ? "Der Formularversand ist noch nicht eingerichtet. Bitte rufen Sie uns direkt an oder nutzen Sie WhatsApp."
+        : "Das Formular konnte nicht gesendet werden. Bitte rufen Sie uns direkt an oder nutzen Sie WhatsApp.";
       contactStatus.classList.add("is-error");
     } finally {
       submitButton?.removeAttribute("disabled");
