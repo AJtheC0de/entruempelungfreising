@@ -234,18 +234,32 @@ if (contactPopup) {
 
   try {
     popupWasShown = sessionStorage.getItem(popupSessionKey) === "true";
-    if (!popupWasShown) sessionStorage.setItem(popupSessionKey, "true");
   } catch {
     // The popup still works when browser storage is unavailable.
   }
 
-  if (!popupWasShown) {
+  const showContactPopup = () => {
+    if (popupWasShown || contactPopup.open) return;
+    popupWasShown = true;
+
+    try {
+      sessionStorage.setItem(popupSessionKey, "true");
+    } catch {
+      // The popup still works when browser storage is unavailable.
+    }
+
     contactPopup.showModal();
     document.body.classList.add("has-contact-popup");
+  };
+
+  if (window.siteConsentState?.hasChoice) {
+    showContactPopup();
+  } else {
+    window.addEventListener("site:consent-choice", showContactPopup, { once: true });
   }
 
   const closeContactPopup = () => {
-    contactPopup.close();
+    if (contactPopup.open) contactPopup.close();
     document.body.classList.remove("has-contact-popup");
   };
 

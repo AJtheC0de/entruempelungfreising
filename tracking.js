@@ -35,6 +35,12 @@ let googleTagLoaded = false;
 let analyticsConfigured = false;
 let adsConfigured = false;
 
+window.siteConsentState = {
+  hasChoice: Boolean(storedConsent),
+  analytics: activeConsent.analytics,
+  ads: activeConsent.ads,
+};
+
 window.gtag("consent", "default", {
   analytics_storage: "denied",
   ad_storage: "denied",
@@ -174,6 +180,15 @@ const createConsentInterface = () => {
 
     applyConsent(consent);
     closeBanner();
+
+    window.siteConsentState = {
+      hasChoice: true,
+      analytics: activeConsent.analytics,
+      ads: activeConsent.ads,
+    };
+    window.dispatchEvent(new CustomEvent("site:consent-choice", {
+      detail: window.siteConsentState,
+    }));
 
     if (shouldReload) window.location.reload();
   };
