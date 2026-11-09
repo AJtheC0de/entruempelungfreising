@@ -2694,9 +2694,8 @@ body.has-contact-popup {
 }
 
 .consent-actions {
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -2713,15 +2712,16 @@ body.has-contact-popup {
   padding: 0 15px;
   border-radius: 999px;
   font-size: 0.86rem;
+  text-align: center;
 }
 
 .consent-reject {
-  background: transparent;
-  color: rgba(255, 255, 255, 0.78);
+  background: #fff;
+  color: #1c211e;
 }
 
 .consent-save {
-  background: #fff;
+  background: #dfe5e1;
   color: #1c211e;
 }
 
@@ -2790,13 +2790,7 @@ body.has-contact-popup {
   }
 
   .consent-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .consent-accept {
-    grid-column: 1 / -1;
-    grid-row: 1;
+    grid-template-columns: 1fr;
   }
 
   .consent-button {

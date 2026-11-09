@@ -108,6 +108,7 @@ const createConsentInterface = () => {
   banner.className = "consent-banner";
   banner.setAttribute("role", "dialog");
   banner.setAttribute("aria-labelledby", "consent-title");
+  banner.setAttribute("aria-describedby", "consent-description");
   banner.hidden = true;
   banner.innerHTML = `
     <div class="consent-panel">
@@ -115,7 +116,7 @@ const createConsentInterface = () => {
       <div class="consent-copy">
         <p class="eyebrow">Datenschutz-Einstellungen</p>
         <h2 id="consent-title">Ihre Privatsphäre, Ihre Wahl.</h2>
-        <p>Statistik und Marketing starten nur mit Ihrer Einwilligung. <a href="/impressum-datenschutz/">Mehr erfahren</a></p>
+        <p id="consent-description">Wählen Sie „Alle akzeptieren“, „Nur notwendige“ oder Ihre persönliche Auswahl. Statistik und Marketing starten erst nach Ihrer Einwilligung. <a href="/impressum-datenschutz/">Mehr erfahren</a></p>
       </div>
       <div class="consent-options" aria-label="Optionale Dienste">
         <div class="consent-option is-required">
@@ -132,9 +133,9 @@ const createConsentInterface = () => {
         </label>
       </div>
       <div class="consent-actions">
+        <button type="button" class="consent-button consent-accept" data-consent-accept>Alle akzeptieren</button>
         <button type="button" class="consent-button consent-reject" data-consent-reject>Nur notwendige</button>
         <button type="button" class="consent-button consent-save" data-consent-save>Auswahl speichern</button>
-        <button type="button" class="consent-button consent-accept" data-consent-accept>Alle akzeptieren</button>
       </div>
     </div>`;
 
