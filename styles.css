@@ -2599,41 +2599,43 @@ body.has-contact-popup {
 .consent-banner {
   position: fixed;
   z-index: 1200;
-  inset: auto 18px 18px;
-  display: flex;
-  justify-content: center;
+  right: 16px;
+  bottom: 16px;
+  width: min(760px, calc(100% - 32px));
 }
 
 .consent-panel {
-  width: min(1120px, 100%);
-  max-height: calc(100vh - 36px);
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 32px);
   overflow: auto;
-  padding: 24px;
+  padding: 19px;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 28px;
+  border-radius: 22px;
   background: rgba(20, 23, 21, 0.98);
   color: #fff;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.9fr);
-  gap: 20px 28px;
+  gap: 14px;
 }
 
 .consent-copy .eyebrow {
-  margin: 0 0 8px;
+  margin: 0 0 5px;
   color: #b8db80;
+  font-size: 0.72rem;
 }
 
 .consent-copy h2 {
-  margin: 0 0 10px;
+  margin: 0 44px 5px 0;
   color: #fff;
-  font-size: clamp(1.35rem, 2.4vw, 2rem);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
 }
 
 .consent-copy p:last-child {
   margin: 0;
   color: rgba(255, 255, 255, 0.76);
-  line-height: 1.65;
+  line-height: 1.45;
+  font-size: 0.9rem;
 }
 
 .consent-copy a {
@@ -2643,14 +2645,15 @@ body.has-contact-popup {
 
 .consent-options {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 }
 
 .consent-option {
-  min-height: 58px;
-  padding: 10px 14px;
+  min-height: 52px;
+  padding: 8px 11px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2670,17 +2673,18 @@ body.has-contact-popup {
 
 .consent-option small {
   color: rgba(255, 255, 255, 0.6);
+  font-size: 0.72rem;
 }
 
 .consent-option input {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   accent-color: var(--lime);
 }
 
 .consent-required {
-  width: 26px;
-  height: 26px;
+  width: 23px;
+  height: 23px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -2690,7 +2694,6 @@ body.has-contact-popup {
 }
 
 .consent-actions {
-  grid-column: 1 / -1;
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
@@ -2706,9 +2709,10 @@ body.has-contact-popup {
 }
 
 .consent-button {
-  min-height: 46px;
-  padding: 0 18px;
+  min-height: 40px;
+  padding: 0 15px;
   border-radius: 999px;
+  font-size: 0.86rem;
 }
 
 .consent-reject {
@@ -2727,10 +2731,34 @@ body.has-contact-popup {
 }
 
 .consent-button:focus-visible,
+.consent-close:focus-visible,
 .consent-settings-button:focus-visible,
 .consent-option input:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 3px;
+}
+
+.consent-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  font: inherit;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.consent-close:hover {
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .consent-settings-button {
@@ -2750,18 +2778,18 @@ body.has-contact-popup {
 
 @media (max-width: 760px) {
   .consent-banner {
-    inset: auto 10px 10px;
+    right: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
   }
 
   .consent-panel {
-    padding: 18px;
-    border-radius: 22px;
-    grid-template-columns: 1fr;
-    gap: 16px;
+    padding: 16px;
+    border-radius: 19px;
+    gap: 12px;
   }
 
   .consent-actions {
-    grid-column: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -2780,5 +2808,15 @@ body.has-contact-popup {
   .consent-settings-button {
     left: 10px;
     bottom: 10px;
+  }
+}
+
+@media (max-width: 580px) {
+  .consent-options {
+    grid-template-columns: 1fr;
+  }
+
+  .consent-option {
+    min-height: 44px;
   }
 }

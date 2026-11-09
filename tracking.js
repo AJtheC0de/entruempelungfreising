@@ -111,10 +111,11 @@ const createConsentInterface = () => {
   banner.hidden = true;
   banner.innerHTML = `
     <div class="consent-panel">
+      <button type="button" class="consent-close" data-consent-close aria-label="Nur notwendige Cookies verwenden und Fenster schließen">×</button>
       <div class="consent-copy">
         <p class="eyebrow">Datenschutz-Einstellungen</p>
-        <h2 id="consent-title">Sie entscheiden, was gemessen wird.</h2>
-        <p>Notwendige Speicherungen sichern die Funktion der Website. Statistik und Marketing starten erst nach Ihrer Einwilligung. Details finden Sie in der <a href="/impressum-datenschutz/">Datenschutzerklärung</a>.</p>
+        <h2 id="consent-title">Ihre Privatsphäre, Ihre Wahl.</h2>
+        <p>Statistik und Marketing starten nur mit Ihrer Einwilligung. <a href="/impressum-datenschutz/">Mehr erfahren</a></p>
       </div>
       <div class="consent-options" aria-label="Optionale Dienste">
         <div class="consent-option is-required">
@@ -180,6 +181,10 @@ const createConsentInterface = () => {
     saveConsent({ analytics: false, ads: false });
   });
 
+  banner.querySelector("[data-consent-close]").addEventListener("click", () => {
+    saveConsent({ analytics: false, ads: false });
+  });
+
   banner.querySelector("[data-consent-save]").addEventListener("click", () => {
     saveConsent({ analytics: analyticsInput.checked, ads: adsInput.checked });
   });
@@ -189,6 +194,12 @@ const createConsentInterface = () => {
   });
 
   settingsButton.addEventListener("click", openBanner);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || banner.hidden) return;
+    event.preventDefault();
+    saveConsent({ analytics: false, ads: false });
+  });
 
   if (storedConsent) {
     closeBanner();
