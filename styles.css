@@ -2605,6 +2605,7 @@ body.has-contact-popup {
 }
 
 .consent-panel {
+  --consent-accent: #b8f06a;
   position: relative;
   width: 100%;
   max-height: calc(100vh - 32px);
@@ -2679,7 +2680,7 @@ body.has-contact-popup {
 .consent-option input {
   width: 20px;
   height: 20px;
-  accent-color: var(--lime);
+  accent-color: var(--consent-accent);
 }
 
 .consent-required {
@@ -2688,8 +2689,8 @@ body.has-contact-popup {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: var(--lime);
-  color: #182015;
+  background: var(--consent-accent);
+  color: #102015;
   font-weight: 800;
 }
 
@@ -2726,8 +2727,14 @@ body.has-contact-popup {
 }
 
 .consent-accept {
-  background: var(--lime);
-  color: #182015;
+  background: var(--consent-accent);
+  color: #102015;
+  box-shadow: inset 0 0 0 1px rgba(16, 32, 21, 0.08);
+  font-weight: 800;
+}
+
+.consent-accept:hover {
+  background: #c7f58a;
 }
 
 .consent-button:focus-visible,
