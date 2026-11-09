@@ -192,6 +192,42 @@ const contactPopupClose = contactPopup?.querySelector("[data-contact-popup-close
 const minSubmitDelay = 4500;
 const submitThrottle = 30000;
 
+const trackWebsiteEvent = (eventName, eventData = {}) => {
+  if (typeof window.trackWebsiteEvent === "function") {
+    window.trackWebsiteEvent(eventName, eventData);
+  }
+};
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a[href]");
+  if (!link) return;
+
+  const href = link.getAttribute("href") || "";
+  const normalizedHref = href.toLowerCase();
+  const linkLocation = link.closest("header")
+    ? "header"
+    : link.closest("footer")
+      ? "footer"
+      : link.classList.contains("floating-whatsapp")
+        ? "floating_button"
+        : "content";
+
+  if (normalizedHref.startsWith("tel:")) {
+    trackWebsiteEvent("phone_click", {
+      link_url: href,
+      link_location: linkLocation,
+    });
+    return;
+  }
+
+  if (/^https:\/\/(?:wa\.me|wa\.link|api\.whatsapp\.com)\//i.test(href)) {
+    trackWebsiteEvent("whatsapp_click", {
+      link_url: href,
+      link_location: linkLocation,
+    });
+  }
+});
+
 if (contactPopup) {
   const popupSessionKey = "contactPopupShown";
   let popupWasShown = false;
@@ -261,8 +297,9 @@ if (contactForm && contactStatus && contactStartedAt) {
         },
       });
 
+      const result = await response.json().catch(() => ({}));
+
       if (!response.ok) {
-        const result = await response.json().catch(() => ({}));
         const error = new Error("Submit failed");
         error.code = result.error;
         throw error;
@@ -273,6 +310,12 @@ if (contactForm && contactStatus && contactStartedAt) {
       contactStartedAt.value = String(Date.now());
       contactStatus.textContent = "Danke, Ihre Anfrage wurde gesendet.";
       contactStatus.classList.add("is-success");
+
+      if (result.accepted === true) {
+        trackWebsiteEvent("contact_form_success", {
+          form_name: contactPopup ? "contact_popup" : "contact_page",
+        });
+      }
     } catch (error) {
       contactStatus.textContent = error.code === "service_unavailable"
         ? "Der Formularversand ist noch nicht eingerichtet. Bitte rufen Sie uns direkt an oder nutzen Sie WhatsApp."

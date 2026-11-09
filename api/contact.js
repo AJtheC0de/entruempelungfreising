@@ -255,5 +255,5 @@ module.exports = async function handler(req, res) {
     return json(res, 502, { ok: false, error: "delivery_failed" });
   }
 
-  return json(res, 202, { ok: true });
+  return json(res, 202, { ok: true, accepted: true });
 };
